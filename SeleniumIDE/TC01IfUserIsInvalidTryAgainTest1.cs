@@ -19,24 +19,24 @@ public class TC01IfUserIsInvalidTryAgainTest
     private IJavaScriptExecutor js;
 
     [SetUp]
-    public void SetUp()
-    {
-        string tempUserDataDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            
+public void SetUp()
+{
+    string tempUserDataDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
-        ChromeOptions options = new ChromeOptions();
-        options.AddArguments("headless");
-        options.AddArguments("no-sandbox");
-        options.AddArguments("disable-gpu");
-        options.AddArguments("window-size=1920x1080");
-        options.AddArguments("disable-extensions");
-        options.AddArguments("remote-debugging-port=9222");
-        options.AddArgument($"--user-data-dir={tempUserDataDir}");
-        
-        driver = new ChromeDriver();
-        js = (IJavaScriptExecutor)driver;
-        vars = new Dictionary<string, object>();
-    }
+    ChromeOptions options = new ChromeOptions();
+    options.AddArguments("headless");
+    options.AddArguments("no-sandbox");
+    options.AddArguments("disable-gpu");
+    options.AddArguments("window-size=1920x1080");
+    options.AddArguments("disable-extensions");
+    options.AddArguments("remote-debugging-port=9222");
+    options.AddArgument($"--user-data-dir={tempUserDataDir}");
+
+    driver = new ChromeDriver(options);  // <--- ТУК
+    js = (IJavaScriptExecutor)driver;
+    vars = new Dictionary<string, object>();
+}
+
 
     [TearDown]
     protected void TearDown()
