@@ -21,6 +21,9 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
     public void SetUp()
     {
+        string tempUserDataDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            options.AddArgument($"--user-data-dir={tempUserDataDir}");
+
         ChromeOptions options = new ChromeOptions();
         options.AddArguments("headless");
         options.AddArguments("no-sandbox");
@@ -37,7 +40,7 @@ public class TC01IfUserIsInvalidTryAgainTest
     [TearDown]
     protected void TearDown()
     {
-        driver.Quit();
+        driver?.Quit();
     }
 
     [Test]
