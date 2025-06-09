@@ -21,7 +21,7 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
 public void SetUp()
 {
-    string tempUserDataDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+    // string tempUserDataDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
     ChromeOptions options = new ChromeOptions();
     options.AddArguments("headless");
@@ -30,9 +30,9 @@ public void SetUp()
     options.AddArguments("window-size=1920x1080");
     options.AddArguments("disable-extensions");
     options.AddArguments("remote-debugging-port=9222");
-    options.AddArgument($"--user-data-dir={tempUserDataDir}");
+    // options.AddArgument($"--user-data-dir={tempUserDataDir}");
 
-    driver = new ChromeDriver(options);  // <--- ТУК
+    driver = new ChromeDriver(options);
     js = (IJavaScriptExecutor)driver;
     vars = new Dictionary<string, object>();
 }
